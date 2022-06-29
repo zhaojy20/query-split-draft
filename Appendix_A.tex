@@ -1,0 +1,16 @@
+\section{Equivalence Rule}
+    This appendix shows the concrete formulas that can be used to obtain the normal form of SPJ query. Because all select-projection-join queries are relational algebra expressions that consist of only select, projection and join, we can transform them to a normal form by equivalence rule:\par
+    \begin{itemize}[leftmargin = 15pt]
+        \item For each join expression, we can rewrite it as select after Cartesian product:
+        $$ r_1 \bowtie_{\theta} r_2=\sigma_{\theta}(r_1 \times r_2) $$
+        \item We can change the order between projection and Cartesian product:
+        $$ \Pi_{A}(r_1) \times \Pi_{B}(r_2)=\Pi_{A \cup B}(r_1 \times r_2) $$
+        where $A$ and $B$ are the set of attributes.
+        \item We can change the order between select and Cartesian product:
+        $$ \sigma_{A}(r_1) \times \sigma_{B}(r_2)=\sigma_{A \cup B}(r_1 \times r_2) $$
+        where $A$ and $B$ are the set of predicates.
+        \item When select is executed after projection, we can change their orders:
+        $$ \sigma_{B}(\Pi_{A}(r_1))=\Pi_{A}(\sigma_{B}(r_1)) $$
+        where $A$ is the set of attributes and $B$ is the set of predicates.
+    \end{itemize}\par
+    By above four transformations, we move all select operations after all Cartesian products, and move projections after all select operations, which is the normal form of SPJ query.
